@@ -6,7 +6,7 @@
 /*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:24:35 by elarue            #+#    #+#             */
-/*   Updated: 2026/01/21 14:35:34 by elarue           ###   ########.fr       */
+/*   Updated: 2026/01/22 13:04:30 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,30 +135,77 @@ int	parse_numbers(int i, int ac, char **av, t_node **a)
 	return (1);
 }
 
-static void	print_stack(t_node *a)
+int	parse_flags(int ac, char **av, t_config *config)
 {
+	int	i;
+
+	i = 1;
+	while (i < ac && av[i][0] == '-' && av[i][1] == '-')
+	{
+		if (!ft_strncmp(av[i], "--simple", 9))
+			config->strat = STRAT_SIMPLE;
+		else if (!ft_strncmp(av[i], "--medium", 9))
+			config->strat = STRAT_MEDIUM;
+		else if (!ft_strncmp(av[i], "--complex", 10))
+			config->strat = STRAT_COMPLEX;
+		else if (!ft_strncmp(av[i], "--adaptive", 11))
+			config->strat = STRAT_ADAPTIVE;
+		else if (!ft_strncmp(av[i], "--bench", 7))
+			config->bench = 1;
+		else
+			return (-1);
+		i++;
+	}
+	return (i);
+}
+
+static void	print_stack(t_node *a, t_config *config)
+{
+	ft_printf("Stack A: ");
 	while (a)
 	{
 		ft_printf("%d ", a->value);
 		a = a->next;
 	}
 	ft_printf("\n");
+	ft_printf("Strategy: ");
+	if (config->strat == STRAT_SIMPLE)
+		ft_printf("SIMPLE\n");
+	else if (config->strat == STRAT_MEDIUM)
+		ft_printf("MEDIUM\n");
+	else if (config->strat == STRAT_COMPLEX)
+		ft_printf("COMPLEX\n");
+	else
+		ft_printf("ADAPTIVE\n");
+	ft_printf("Bench mode: ");
+	if (config->bench == 1)
+		ft_printf("ON\n");
+	if (config->bench == 0)
+		ft_printf("OFF\n");
 }
 
 int	main(int ac, char **av)
 {
-	t_node	*a;
-	int		start;
+	t_node		*a;
+	t_config	config;
+	int			start;
 
 	a = NULL;
-	start = 1;
 	if (ac < 2)
 		return (0);
+	config.strat = STRAT_ADAPTIVE;
+	config.bench = 0;
+	start = parse_flags(ac, av, &config);
+	if (start < 0)
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
 	if (!parse_numbers(start, ac, av, &a))
 	{
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	print_stack(a);
+	print_stack(a, &config);
 	return (0);
 }

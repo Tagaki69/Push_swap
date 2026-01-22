@@ -6,7 +6,7 @@
 /*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:24:35 by elarue            #+#    #+#             */
-/*   Updated: 2026/01/22 13:04:30 by elarue           ###   ########.fr       */
+/*   Updated: 2026/01/22 16:46:47 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,15 +142,19 @@ int	parse_flags(int ac, char **av, t_config *config)
 	i = 1;
 	while (i < ac && av[i][0] == '-' && av[i][1] == '-')
 	{
-		if (!ft_strncmp(av[i], "--simple", 9))
+		if (!ft_strncmp(av[i], "--simple", 9)
+			&& config->strat == STRAT_NONE)
 			config->strat = STRAT_SIMPLE;
-		else if (!ft_strncmp(av[i], "--medium", 9))
+		else if (!ft_strncmp(av[i], "--medium", 9)
+			&& config->strat == STRAT_NONE)
 			config->strat = STRAT_MEDIUM;
-		else if (!ft_strncmp(av[i], "--complex", 10))
+		else if (!ft_strncmp(av[i], "--complex", 10)
+			&& config->strat == STRAT_NONE)
 			config->strat = STRAT_COMPLEX;
-		else if (!ft_strncmp(av[i], "--adaptive", 11))
+		else if (!ft_strncmp(av[i], "--adaptive", 11)
+			&& config->strat == STRAT_NONE)
 			config->strat = STRAT_ADAPTIVE;
-		else if (!ft_strncmp(av[i], "--bench", 7))
+		else if (!ft_strncmp(av[i], "--bench", 7) && config->bench == 0)
 			config->bench = 1;
 		else
 			return (-1);
@@ -193,7 +197,7 @@ int	main(int ac, char **av)
 	a = NULL;
 	if (ac < 2)
 		return (0);
-	config.strat = STRAT_ADAPTIVE;
+	config.strat = STRAT_NONE;
 	config.bench = 0;
 	start = parse_flags(ac, av, &config);
 	if (start < 0)
@@ -201,6 +205,8 @@ int	main(int ac, char **av)
 		write(2, "Error\n", 6);
 		return (1);
 	}
+	if (config.strat == STRAT_NONE)
+		config.strat = STRAT_ADAPTIVE;
 	if (!parse_numbers(start, ac, av, &a))
 	{
 		write(2, "Error\n", 6);

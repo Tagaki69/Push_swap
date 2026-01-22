@@ -6,7 +6,7 @@
 /*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 11:26:19 by elarue            #+#    #+#             */
-/*   Updated: 2026/01/22 11:10:03 by elarue           ###   ########.fr       */
+/*   Updated: 2026/01/22 16:34:27 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef enum e_strategy
 	STRAT_ADAPTIVE,
 	STRAT_SIMPLE,
 	STRAT_MEDIUM,
-	STRAT_COMPLEX
+	STRAT_COMPLEX,
+	STRAT_NONE
 }					t_strategy;
 
 typedef struct s_config

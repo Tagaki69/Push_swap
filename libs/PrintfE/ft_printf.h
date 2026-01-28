@@ -30,5 +30,6 @@ int		handle_char_percent(va_list args, const char format);
 int		handle_int_uint(va_list args, const char format);
 int		handle_hex(va_list args, const char format);
 int		handle_pointer(va_list args);
+int		handle_float(va_list args);
 
 #endif

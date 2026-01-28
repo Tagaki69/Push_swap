@@ -4,7 +4,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 MANDATORY_NAME = .mandatory
 
-SRCS = ft_itoa_all.c ft_printf.c ft_output.c ft_string.c ft_printf_convertions.c
+SRCS = ft_itoa_all.c ft_printf.c ft_output.c ft_printf_convertions.c ft_printf_convertions2.c \
+ft_string.c
 
 OBJS = $(SRCS:.c=.o)
 

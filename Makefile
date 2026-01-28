@@ -7,7 +7,8 @@ PRINTF_DIR  = libs/PrintfE
 
 SRCS        = srcs/main.c srcs/parsing.c srcs/swap.c \
               srcs/push.c srcs/rotate.c srcs/rev_rotate.c \
-			  srcs/algo.c
+			  srcs/algo.c srcs/stack_utils.c srcs/algo_medium.c\
+			  srcs/memory.c srcs/complex.c \
 
 OBJS        = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: wakhazza <wakhazza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 14:57:57 by wakhazza          #+#    #+#             */
-/*   Updated: 2026/01/23 14:57:58 by wakhazza         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:10:02 by wakhazza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,36 @@ static void	swap(t_node **stack)
 	*stack = second;
 }
 
-void	sa(t_node **stack_a)
+void	sa(t_node **stack_a, t_config *config)
 {
 	swap(stack_a);
 	ft_printf("sa\n");
+	if (config->bench)
+	{
+		config->counts[COUNT_SA]++;
+		config->total++;
+	}
 }
 
-void	sb(t_node **stack_b)
+void	sb(t_node **stack_b, t_config *config)
 {
 	swap(stack_b);
 	ft_printf("sb\n");
+	if (config->bench)
+	{
+		config->counts[COUNT_SB]++;
+		config->total++;
+	}
 }
 
-void	ss(t_node **stack_a, t_node **stack_b)
+void	ss(t_node **stack_a, t_node **stack_b, t_config *config)
 {
 	swap(stack_a);
 	swap(stack_b);
 	ft_printf("ss\n");
+	if (config->bench)
+	{
+		config->counts[COUNT_SS]++;
+		config->total++;
+	}
 }

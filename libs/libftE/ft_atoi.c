@@ -42,8 +42,6 @@ long	ft_atoi(const char *nptr)
 	return (n * s);
 }
 
-
-
 /*
 #include <stdio.h>
 

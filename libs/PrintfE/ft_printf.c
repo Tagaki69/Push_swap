@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wakhazza <wakhazza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 12:42:52 by elarue            #+#    #+#             */
-/*   Updated: 2025/12/09 10:34:39 by elarue           ###   ########.fr       */
+/*   Updated: 2026/01/26 14:55:19 by wakhazza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@ int	parse_and_print(const char *format, va_list args)
 
 	i = 0;
 	count = 0;
-	if (!format)
-		return (-1);
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i + 1] == '.'
+			&& format[i + 2] == '2' && format[i + 3] == 'f')
 		{
-			if (format[i + 1] == '\0')
-				return (-1);
+			count = handle_float(args) + count;
+			i += 4;
+		}
+		else if (format[i] == '%')
+		{
 			i++;
-			count = process_conversion(format[i], args) + count;
-			i++;
+			count = process_conversion(format[i++], args) + count;
 		}
 		else
 		{
-			ft_putchar_fd(format[i], 1);
-			i++;
+			ft_putchar_fd(format[i++], 1);
 			count++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: wakhazza <wakhazza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 14:58:14 by wakhazza          #+#    #+#             */
-/*   Updated: 2026/01/23 14:58:35 by wakhazza         ###   ########.fr       */
+/*   Updated: 2026/01/27 16:09:41 by wakhazza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,36 @@ static void	rotate(t_node **stack)
 	first->next = NULL;
 }
 
-void	ra(t_node **stack_a)
+void	ra(t_node **stack_a, t_config *config)
 {
 	rotate(stack_a);
 	ft_printf ("ra\n");
+	if (config->bench)
+	{
+		config->counts[COUNT_RA]++;
+		config->total++;
+	}
 }
 
-void	rb(t_node **stack_b)
+void	rb(t_node **stack_b, t_config *config)
 {
 	rotate(stack_b);
 	ft_printf ("rb\n");
+	if (config->bench)
+	{
+		config->counts[COUNT_RB]++;
+		config->total++;
+	}
 }
 
-void	rr(t_node **stack_a, t_node **stack_b)
+void	rr(t_node **stack_a, t_node **stack_b, t_config *config)
 {
 	rotate(stack_a);
 	rotate(stack_b);
 	ft_printf("rr\n");
+	if (config->bench)
+	{
+		config->counts[COUNT_RR]++;
+		config->total++;
+	}
 }

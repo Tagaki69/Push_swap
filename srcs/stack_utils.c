@@ -6,11 +6,66 @@
 /*   By: wakhazza <wakhazza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:04:17 by wakhazza          #+#    #+#             */
-/*   Updated: 2026/01/23 15:06:47 by wakhazza         ###   ########.fr       */
+/*   Updated: 2026/01/27 15:15:55 by wakhazza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+int	stack_size(t_node *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
+
+int	find_index(t_node **stack_a)
+{
+	t_node	*tmp;
+	t_node	*current;
+	int		smaller;
+	int		total;
+
+	total = 0;
+	current = *stack_a;
+	while (current != NULL)
+	{
+		smaller = 0;
+		tmp = *stack_a;
+		while (tmp != NULL)
+		{
+			if (current->value > tmp ->value)
+				smaller += 1;
+			tmp = tmp->next;
+		}
+		current->index = smaller;
+		current = current->next;
+		total++;
+	}
+	return (total);
+}
+
+int	find_sqrt(int total)
+{
+	int	i;
+
+	i = 1;
+	if (total < 0)
+		return (0);
+	while (i * i < total)
+	{
+		if (i * i == total)
+			return (i);
+		i++;
+	}
+	return (i - 1);
+}
 
 t_node	*node_new(int value)
 {
@@ -42,42 +97,4 @@ int	push_back(t_node **a, int v)
 		last = last->next;
 	last->next = new;
 	return (1);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split && split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
-}
-
-void	print_stack(t_node *a, t_config *config)
-{
-	ft_printf("Stack A: ");
-	while (a)
-	{
-		ft_printf("%d ", a->value);
-		a = a->next;
-	}
-	ft_printf("\n");
-	ft_printf("Strategy: ");
-	if (config->strat == STRAT_SIMPLE)
-		ft_printf("SIMPLE\n");
-	else if (config->strat == STRAT_MEDIUM)
-		ft_printf("MEDIUM\n");
-	else if (config->strat == STRAT_COMPLEX)
-		ft_printf("COMPLEX\n");
-	else if (config->strat == STRAT_ADAPTIVE)
-		ft_printf("ADAPTIVE\n");
-	ft_printf("Bench mode: ");
-	if (config->bench == 1)
-		ft_printf("ON\n");
-	if (config->bench == 0)
-		ft_printf("OFF\n");
 }

@@ -30,11 +30,11 @@ long	ft_atoi(const char *nptr)
 			s = -1;
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		if (n > ((long)2147483647 - (nptr[i] - '0')) / 10)
+		if (n > ((long)2147483648 - (nptr[i] - '0')) / 10)
 		{
 			if (s == 1)
-				return ((long)2147483647 + 1);
-			return ((long)-2147483647 - 1);
+				return ((long)2147483648);
+			return ((long)-2147483649);
 		}
 		n = n * 10 + (nptr[i] - '0');
 		i++;

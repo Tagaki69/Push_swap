@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rev_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wakhazza <wakhazza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 14:58:09 by wakhazza          #+#    #+#             */
-/*   Updated: 2026/01/27 16:09:14 by wakhazza         ###   ########.fr       */
+/*   Updated: 2026/02/03 13:05:54 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static void	rev_rotate(t_node **stack)
+void	rev_rotate(t_node **stack)
 {
 	t_node	*last;
 	t_node	*st_last;
@@ -34,8 +34,9 @@ static void	rev_rotate(t_node **stack)
 void	rra(t_node **stack_a, t_config *config)
 {
 	rev_rotate(stack_a);
-	ft_printf("rra\n");
-	if (config->bench)
+	if (!config->count_only)
+		ft_printf("rra\n");
+	if (config->bench || config->count_only)
 	{
 		config->counts[COUNT_RRA]++;
 		config->total++;
@@ -45,8 +46,9 @@ void	rra(t_node **stack_a, t_config *config)
 void	rrb(t_node **stack_b, t_config *config)
 {
 	rev_rotate(stack_b);
-	ft_printf("rrb\n");
-	if (config->bench)
+	if (!config->count_only)
+		ft_printf("rrb\n");
+	if (config->bench || config->count_only)
 	{
 		config->counts[COUNT_RRB]++;
 		config->total++;
@@ -57,8 +59,9 @@ void	rrr(t_node **stack_a, t_node **stack_b, t_config *config)
 {
 	rev_rotate(stack_a);
 	rev_rotate(stack_b);
-	ft_printf("rrr\n");
-	if (config->bench)
+	if (!config->count_only)
+		ft_printf("rrr\n");
+	if (config->bench || config->count_only)
 	{
 		config->counts[COUNT_RRR]++;
 		config->total++;

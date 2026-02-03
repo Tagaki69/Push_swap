@@ -6,7 +6,7 @@
 /*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 11:26:19 by elarue            #+#    #+#             */
-/*   Updated: 2026/01/28 10:49:19 by elarue           ###   ########.fr       */
+/*   Updated: 2026/02/03 12:55:10 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef enum e_move
 	COUNT_RRA,
 	COUNT_RRB,
 	COUNT_RRR,
+	COUNT_MAX,
 }					t_move;
 
 typedef enum e_strategy
@@ -48,8 +49,11 @@ typedef struct s_config
 {
 	t_strategy		strat;
 	int				bench;
-	int				counts[11];
+	int				counts[COUNT_MAX];
 	int				total;
+	int				chosen;
+	int			count_only;
+	double			disorder;
 }					t_config;
 
 typedef struct s_node
@@ -63,6 +67,10 @@ int					parse_flags(int ac, char **av, t_config *config);
 int					parse_numbers(int i, int ac, char **av, t_node **a);
 int					find_index(t_node **stack_a);
 
+void				swap(t_node **stack);
+void				push(t_node **src, t_node **dest);
+void				rotate(t_node **stack);
+void				rev_rotate(t_node **stack);
 void				sa(t_node **stack_a, t_config *config);
 void				sb(t_node **stack_b, t_config *config);
 void				ss(t_node **stack_a, t_node **stack_b, t_config *config);
@@ -102,12 +110,29 @@ int					cleanup_error(t_node **stack, int j);
 void				print_stack(t_node *a, t_config *config);
 void				print_stacks(t_node *a, t_node *b);
 
-void				chose_strat(t_config config, t_node **stack_a,
+void				chose_strat(t_config *config, t_node **stack_a,
 						t_node **stack_b);
 void				adaptive_strat(t_node **stack_a, t_node **stack_b,
 						t_config *config);
 
 void				compress_stack_to_index(t_node *a);
 void				radix_sort(t_node **a, t_node **b, t_config *config);
+
+void				init_config(t_config *config);
+void				print_bench(t_config *config);
+
+void				chk_sa(t_node **stack_a);
+void				chk_sb(t_node **stack_b);
+void				chk_ss(t_node **stack_a, t_node **stack_b);
+void				chk_pa(t_node **stack_a, t_node **stack_b);
+void				chk_pb(t_node **stack_a, t_node **stack_b);
+
+void				chk_ra(t_node **stack_a);
+void				chk_rb(t_node **stack_b);
+void				chk_rr(t_node **stack_a, t_node **stack_b);
+
+void				chk_rra(t_node **stack_a);
+void				chk_rrb(t_node **stack_b);
+void				chk_rrr(t_node **stack_a, t_node **stack_b);
 
 #endif

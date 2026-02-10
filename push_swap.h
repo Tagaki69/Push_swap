@@ -6,7 +6,7 @@
 /*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 11:26:19 by elarue            #+#    #+#             */
-/*   Updated: 2026/02/03 12:55:10 by elarue           ###   ########.fr       */
+/*   Updated: 2026/02/03 13:55:24 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_config
 	int				counts[COUNT_MAX];
 	int				total;
 	int				chosen;
-	int			count_only;
 	double			disorder;
 }					t_config;
 
@@ -90,7 +89,7 @@ void				bring_to_a(t_node **stack_a, t_node **stack_b,
 void				max_to_top(t_node **stack_b, int max_pos, t_config *config);
 int					set_chunks(t_node **stack_a);
 
-void				insertion_sort(t_node **stack_a, t_node **stack_b,
+void				selection_sort(t_node **stack_a, t_node **stack_b,
 						t_config *config);
 void				min_to_top(t_node **stack_a, int min_pos, t_config *config);
 

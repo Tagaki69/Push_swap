@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wakhazza <wakhazza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 15:00:31 by wakhazza          #+#    #+#             */
-/*   Updated: 2026/01/28 14:15:48 by wakhazza         ###   ########.fr       */
+/*   Updated: 2026/02/03 13:51:05 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	min_to_top(t_node **stack_a, int min_pos, t_config *config)
 	}
 }
 
-void	insertion_sort(t_node **stack_a, t_node **stack_b, t_config *config)
+void	selection_sort(t_node **stack_a, t_node **stack_b, t_config *config)
 {
 	int		min_pos;
 

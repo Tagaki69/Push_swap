@@ -1,7 +1,7 @@
 NAME        = push_swap
 BONUS_NAME  = checker
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -I. -g -Ilibs/libftE -Ilibs/PrintfE
+CFLAGS      = -Wall -Wextra -Werror -I. -Ilibs/libftE -Ilibs/PrintfE -MMD
 
 LIBFT_DIR   = libs/libftE
 PRINTF_DIR  = libs/PrintfE
@@ -17,6 +17,7 @@ BONUS_SRCS  = bonus/checker.c bonus/get_next_line.c bonus/get_next_line_utils.c 
 
 PS_OBJS     = $(PS_SRCS:.c=.o) $(COMMON_SRCS:.c=.o)
 BONUS_OBJS  = $(BONUS_SRCS:.c=.o) $(COMMON_SRCS:.c=.o)
+DEPS        = $(PS_OBJS:.o=.d) $(BONUS_OBJS:.o=.d)
 
 all: $(NAME)
 
@@ -38,7 +39,7 @@ $(BONUS_NAME): $(BONUS_OBJS)
 clean:
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(PRINTF_DIR) clean
-	rm -rf $(PS_OBJS) $(BONUS_OBJS)
+	rm -rf $(PS_OBJS) $(BONUS_OBJS) $(DEPS)
 
 fclean: clean
 	@make -C $(LIBFT_DIR) fclean
@@ -46,5 +47,7 @@ fclean: clean
 	rm -rf $(NAME) $(BONUS_NAME)
 
 re: fclean all
+
+-include $(DEPS)
 
 .PHONY: all bonus clean fclean re

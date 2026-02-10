@@ -6,7 +6,7 @@
 /*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 14:58:14 by wakhazza          #+#    #+#             */
-/*   Updated: 2026/02/03 13:06:03 by elarue           ###   ########.fr       */
+/*   Updated: 2026/02/03 13:56:57 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ void	rotate(t_node **stack)
 void	ra(t_node **stack_a, t_config *config)
 {
 	rotate(stack_a);
-	if (!config->count_only)
-		ft_printf ("ra\n");
-	if (config->bench || config->count_only)
+	ft_printf ("ra\n");
+	if (config->bench)
 	{
 		config->counts[COUNT_RA]++;
 		config->total++;
@@ -43,9 +42,8 @@ void	ra(t_node **stack_a, t_config *config)
 void	rb(t_node **stack_b, t_config *config)
 {
 	rotate(stack_b);
-	if (!config->count_only)
-		ft_printf ("rb\n");
-	if (config->bench || config->count_only)
+	ft_printf ("rb\n");
+	if (config->bench)
 	{
 		config->counts[COUNT_RB]++;
 		config->total++;
@@ -56,9 +54,8 @@ void	rr(t_node **stack_a, t_node **stack_b, t_config *config)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	if (!config->count_only)
-		ft_printf("rr\n");
-	if (config->bench || config->count_only)
+	ft_printf("rr\n");
+	if (config->bench)
 	{
 		config->counts[COUNT_RR]++;
 		config->total++;

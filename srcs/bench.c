@@ -6,7 +6,7 @@
 /*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 12:59:07 by wakhazza          #+#    #+#             */
-/*   Updated: 2026/02/03 13:06:21 by elarue           ###   ########.fr       */
+/*   Updated: 2026/02/03 13:55:52 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	init_config(t_config *config)
 	config->total = 0;
 	config->disorder = 0;
 	config->chosen = 0;
-	config->count_only = 0;
 	i = 0;
 	while (i < COUNT_MAX)
 	{

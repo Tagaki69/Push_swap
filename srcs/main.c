@@ -6,7 +6,7 @@
 /*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 14:59:08 by wakhazza          #+#    #+#             */
-/*   Updated: 2026/02/03 13:07:00 by elarue           ###   ########.fr       */
+/*   Updated: 2026/02/03 13:55:41 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int	main(int ac, char **av)
 	find_index(&a);
 	chose_strat(&config, &a, &b);
 	print_bench(&config);
-	if (config.count_only)
-		ft_printf("\n%d", config.total);
 	free_stack(&a);
 	return (0);
 }

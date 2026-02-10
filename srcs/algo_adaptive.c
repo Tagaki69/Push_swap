@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_adaptive.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wakhazza <wakhazza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 11:27:52 by wakhazza          #+#    #+#             */
-/*   Updated: 2026/02/02 17:13:38 by wakhazza         ###   ########.fr       */
+/*   Updated: 2026/02/03 13:51:05 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	chose_strat(t_config *config, t_node **stack_a, t_node **stack_b)
 	if (config->strat == STRAT_ADAPTIVE)
 		adaptive_strat(stack_a, stack_b, config);
 	else if (config->strat == STRAT_SIMPLE)
-		insertion_sort(stack_a, stack_b, config);
+		selection_sort(stack_a, stack_b, config);
 	else if (config->strat == STRAT_MEDIUM)
 		chunk_sort(stack_a, stack_b, config);
 	else if (config->strat == STRAT_COMPLEX)
@@ -34,7 +34,7 @@ void	adaptive_strat(t_node **stack_a, t_node **stack_b, t_config *config)
 	if (config->disorder < 0.2)
 	{
 		config->chosen = 1;
-		insertion_sort(stack_a, stack_b, config);
+		selection_sort(stack_a, stack_b, config);
 	}
 	if (config->disorder >= 0.2 && config->disorder < 0.5)
 	{

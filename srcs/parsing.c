@@ -6,7 +6,7 @@
 /*   By: elarue <elarue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 10:24:35 by elarue            #+#    #+#             */
-/*   Updated: 2026/02/03 13:05:35 by elarue           ###   ########.fr       */
+/*   Updated: 2026/02/03 15:40:41 by elarue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,8 @@ int	parse_flags(int ac, char **av, t_config *config)
 		else if (!ft_strncmp(av[i], "--adaptive", 11)
 			&& config->strat == STRAT_NONE)
 			config->strat = STRAT_ADAPTIVE;
-		else if (!ft_strncmp(av[i], "--bench", 7) && config->bench == 0)
+		else if (!ft_strncmp(av[i], "--bench", 8) && config->bench == 0)
 			config->bench = 1;
-		else if (!ft_strncmp(av[i], "--count-only", 13))
-			config->count_only = 1;
 		else
 			return (-1);
 		i++;
